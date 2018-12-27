@@ -1,0 +1,26 @@
+baseURL = "https://blog.pla.social/"
+languageCode = "en-us"
+title = "PLA Fedilog"
+theme = "gohugo-theme-ananke"
+MetaDataFormat = "yaml"
+DefaultContentLanguage = "en"
+SectionPagesMenu = "main"
+Paginate = 10
+
+
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+[params]
+  favicon = "fediverse.png"
+  description = "PLA's Fediverse Log"
+  twitter = "https://twitter.com/PLA1"
+  youtube = "https://www.youtube.com/channel/UC5pKVW_GoO_5lHfxPIsCfFA"
+  github = "https://github.com/pla1"
+  rss = "https://blog.pla.social/index.xml"
+  background_color_class = "bg-black"
+  featured_image = "https://lh3.googleusercontent.com/bO7I_5zW4Z3RHVBtJCfYDpbJiHTvMTNza7xnDnpK1xFE76-445VHoYaEMM-GkxwoAgH0nLNoSLKzgWPHzMofBQizYcV2e3vTBjRLWitR9AlEGv2wk_X4jfsIKXmtTlvBXlsT-lOrfzQ=w2400"
+  recent_posts_number = 2
+  env = "production"

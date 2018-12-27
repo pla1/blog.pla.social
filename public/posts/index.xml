@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on PLA Fedilog</title>
+    <link>https://blog.pla.social/posts/</link>
+    <description>Recent content in Posts on PLA Fedilog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 26 Dec 2018 20:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="https://blog.pla.social/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Pleroma Find User Quirk</title>
+      <link>https://blog.pla.social/posts/20181226/</link>
+      <pubDate>Wed, 26 Dec 2018 20:00:00 -0400</pubDate>
+      
+      <guid>https://blog.pla.social/posts/20181226/</guid>
+      <description>The image sharing system Pixelfed began federating on Christmas day 2018. Most of the Fediverse had been looking forward to this event. I tried to follow my account @PLA@pixelfed.social from my Pleroma instance https://pla.social and could not find it. Investigated and found that the PostgreSQL query uses the Trigram module. I&amp;rsquo;d never heard of it before today.
+From the PostgreSQL documentation: A trigram is a group of three consecutive characters taken from a string.</description>
+    </item>
+    
+  </channel>
+</rss>
