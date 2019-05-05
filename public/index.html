@@ -40,7 +40,7 @@
 
 
 
-<meta property="og:updated_time" content="2018-12-26T20:00:00-04:00"/>
+<meta property="og:updated_time" content="2019-05-05T05:00:00-04:00"/>
 
 
 
@@ -184,39 +184,6 @@
           
         
         <div class="pr3-ns mb4 mb0-ns w-100 w-40-ns">
-          <a href="/posts/20181226/" class="db grow">
-            <img src="https://lh3.googleusercontent.com/bjKwWZXta_2VzfAdsoYgnrI7fKmDeqOru5Ek3DkOAN0aTTizOY98FuaqNWHeVHeCZm0aTBqUKyMI-IMsn7Ik7Nq57ySwZhX5UJtYEZyvm-oxtLZo7FxT-SyRxUcxPrsRdfGIKTrTlzA=w2400" class="img" alt="image from Pleroma Find User Quirk">
-          </a>
-        </div>
-      
-      <div class="blah w-100 w-60-ns pl3-ns">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="/posts/20181226/" class="color-inherit dim link">
-            Pleroma Find User Quirk
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          The image sharing system Pixelfed began federating on Christmas day 2018. Most of the Fediverse had been looking forward to this event. I tried to follow my account @PLA@pixelfed.social from my Pleroma instance https://pla.social and could not find it. Investigated and found that the PostgreSQL query uses the Trigram module. I&rsquo;d never heard of it before today.
-From the PostgreSQL documentation: A trigram is a group of three consecutive characters taken from a string.
-        </div>
-          <a href="/posts/20181226/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-        
-      </div>
-    </div>
-  </div>
-</article>
-
-          </div>
-        
-          <div class="relative w-100 mb4">
-            
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
-    <div class="flex flex-column flex-row-ns">
-      
-          
-        
-        <div class="pr3-ns mb4 mb0-ns w-100 w-40-ns">
           <a href="/posts/20190505/" class="db grow">
             <img src="https://lh3.googleusercontent.com/bjKwWZXta_2VzfAdsoYgnrI7fKmDeqOru5Ek3DkOAN0aTTizOY98FuaqNWHeVHeCZm0aTBqUKyMI-IMsn7Ik7Nq57ySwZhX5UJtYEZyvm-oxtLZo7FxT-SyRxUcxPrsRdfGIKTrTlzA=w2400" class="img" alt="image from Pleroma Mention Email Notifications">
           </a>
@@ -234,6 +201,39 @@ You&rsquo;ll need a mail transfer agent configured on your server. I use Postfix
 Create database function create or replace function function_notifications_email() returns trigger as $$ declare body text :='EMPTY'; begin select replace(c.data-&gt;&gt;'content','''','&quot;') from activities as b join objects as c on b.data-&gt;&gt;'object' = c.data-&gt;&gt;'id' where new.
         </div>
           <a href="/posts/20190505/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+          
+        
+        <div class="pr3-ns mb4 mb0-ns w-100 w-40-ns">
+          <a href="/posts/20181226/" class="db grow">
+            <img src="https://lh3.googleusercontent.com/bjKwWZXta_2VzfAdsoYgnrI7fKmDeqOru5Ek3DkOAN0aTTizOY98FuaqNWHeVHeCZm0aTBqUKyMI-IMsn7Ik7Nq57ySwZhX5UJtYEZyvm-oxtLZo7FxT-SyRxUcxPrsRdfGIKTrTlzA=w2400" class="img" alt="image from Pleroma Find User Quirk">
+          </a>
+        </div>
+      
+      <div class="blah w-100 w-60-ns pl3-ns">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/posts/20181226/" class="color-inherit dim link">
+            Pleroma Find User Quirk
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          The image sharing system Pixelfed began federating on Christmas day 2018. Most of the Fediverse had been looking forward to this event. I tried to follow my account @PLA@pixelfed.social from my Pleroma instance https://pla.social and could not find it. Investigated and found that the PostgreSQL query uses the Trigram module. I&rsquo;d never heard of it before today.
+From the PostgreSQL documentation: A trigram is a group of three consecutive characters taken from a string.
+        </div>
+          <a href="/posts/20181226/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
         
       </div>
     </div>

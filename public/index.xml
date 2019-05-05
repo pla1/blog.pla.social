@@ -6,10 +6,21 @@
     <description>Recent content on PLA Fedilog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 26 Dec 2018 20:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 05 May 2019 05:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://blog.pla.social/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Pleroma Mention Email Notifications</title>
+      <link>https://blog.pla.social/posts/20190505/</link>
+      <pubDate>Sun, 05 May 2019 05:00:00 -0400</pubDate>
+      
+      <guid>https://blog.pla.social/posts/20190505/</guid>
+      <description>This is my hack to get an email when my Pleroma account is mentioned. The hack is a PostgreSQL database trigger on the notifications table.
+You&amp;rsquo;ll need a mail transfer agent configured on your server. I use Postfix.
+Create database function create or replace function function_notifications_email() returns trigger as $$ declare body text :=&#39;EMPTY&#39;; begin select replace(c.data-&amp;gt;&amp;gt;&#39;content&#39;,&#39;&#39;&#39;&#39;,&#39;&amp;quot;&#39;) from activities as b join objects as c on b.data-&amp;gt;&amp;gt;&#39;object&#39; = c.data-&amp;gt;&amp;gt;&#39;id&#39; where new.</description>
+    </item>
     
     <item>
       <title>Pleroma Find User Quirk</title>
@@ -19,17 +30,6 @@
       <guid>https://blog.pla.social/posts/20181226/</guid>
       <description>The image sharing system Pixelfed began federating on Christmas day 2018. Most of the Fediverse had been looking forward to this event. I tried to follow my account @PLA@pixelfed.social from my Pleroma instance https://pla.social and could not find it. Investigated and found that the PostgreSQL query uses the Trigram module. I&amp;rsquo;d never heard of it before today.
 From the PostgreSQL documentation: A trigram is a group of three consecutive characters taken from a string.</description>
-    </item>
-    
-    <item>
-      <title>Pleroma Mention Email Notifications</title>
-      <link>https://blog.pla.social/posts/20190505/</link>
-      <pubDate>Sat, 05 May 2018 05:00:00 -0400</pubDate>
-      
-      <guid>https://blog.pla.social/posts/20190505/</guid>
-      <description>This is my hack to get an email when my Pleroma account is mentioned. The hack is a PostgreSQL database trigger on the notifications table.
-You&amp;rsquo;ll need a mail transfer agent configured on your server. I use Postfix.
-Create database function create or replace function function_notifications_email() returns trigger as $$ declare body text :=&#39;EMPTY&#39;; begin select replace(c.data-&amp;gt;&amp;gt;&#39;content&#39;,&#39;&#39;&#39;&#39;,&#39;&amp;quot;&#39;) from activities as b join objects as c on b.data-&amp;gt;&amp;gt;&#39;object&#39; = c.data-&amp;gt;&amp;gt;&#39;id&#39; where new.</description>
     </item>
     
   </channel>
