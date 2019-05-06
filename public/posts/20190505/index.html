@@ -232,10 +232,10 @@ while True:
             print &quot;Got NOTIFY:&quot;, datetime.datetime.now(), notify.pid, notify.channel, notify.payload
             s = smtplib.SMTP('localhost')
             msg = MIMEText(notify.payload,'html','utf-8')
-            msg['From'] = 'patrick.archibald@gmail.com'
-            msg['To'] = 'patrick.archibald@gmail.com'
+            msg['From'] = 'my.email.address@gmail.com'
+            msg['To'] = 'my.email.address@gmail.com'
             msg['Subject'] = datetime.datetime.now().strftime(&quot;Pleroma mention - %B %d, %Y %H:%M:%S %p&quot;)
-            s.sendmail('patrick.archibald@gmail.com',['patrick.archibald@gmail.com'],msg.as_string())
+            s.sendmail('my.email.address@gmail.com',['my.email.address@gmail.com'],msg.as_string())
             print &quot;Sent email&quot;, msg.as_string()
             s.quit()
 </code></pre>
