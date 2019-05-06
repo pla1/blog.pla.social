@@ -9,7 +9,7 @@
     <meta name="MobileOptimized" content="320">
 
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.42.2" />
+    <meta name="generator" content="Hugo 0.40.3" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -17,7 +17,7 @@
 
     
     
-      <link href="/dist/css/app.d98f2eb6bcd1eaedb7edf166bd16af26.css" rel="stylesheet">
+      <link href="/dist/css/app.955516233bcafa4d2a1c13cea63c7b50.css" rel="stylesheet">
     
 
     
@@ -59,7 +59,7 @@
 
 <meta itemprop="datePublished" content="2019-05-05T05:00:00-04:00" />
 <meta itemprop="dateModified" content="2019-05-05T05:00:00-04:00" />
-<meta itemprop="wordCount" content="145">
+<meta itemprop="wordCount" content="180">
 
   <meta itemprop="image" content="https://lh3.googleusercontent.com/bjKwWZXta_2VzfAdsoYgnrI7fKmDeqOru5Ek3DkOAN0aTTizOY98FuaqNWHeVHeCZm0aTBqUKyMI-IMsn7Ik7Nq57ySwZhX5UJtYEZyvm-oxtLZo7FxT-SyRxUcxPrsRdfGIKTrTlzA=w2400">
 
@@ -92,8 +92,6 @@
       PLA Fedilog
     </a>
     <div class="flex-l items-center">
-      
-
       
         <ul class="pl0 mr3">
           
@@ -147,20 +145,16 @@
 
 
 
-
-
     </div>
   </div>
 </nav>
 
       <div class="tc-l pv6 ph3 ph4-ns">
+        <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">Pleroma Mention Email Notifications</h1>
         
-          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">Pleroma Mention Email Notifications</h1>
-          
-            <h2 class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
-              Using a database trigger to receive an email on mentions in Pleroma
-            </h2>
-          
+          <h2 class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+            Using a database trigger to receive an email on mentions in Pleroma
+          </h2>
         
       </div>
     </div>
@@ -171,7 +165,7 @@
     <main class="pb7" role="main">
       
   
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+  <article class="flex-l flex-wrap justify-between mw8 center ph3 ph0-l">
 
     <header class="mt4 w-100">
       <p class="f6 b helvetica tracked">
@@ -185,7 +179,7 @@
       
     </header>
 
-    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l">
+    <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l">
 
 <p>This is my hack to get an email when my <a href="https://pleroma.social/">Pleroma</a> account is mentioned. The hack is a <a href="https://www.postgresql.org/">PostgreSQL</a> database trigger on the notifications table.</p>
 
@@ -206,7 +200,10 @@
 # Send email from pleroma PostgreSQL function function_notifications_email().
 #
 logger &quot;$0 $1 $2&quot;
-/bin/echo &quot;$1 $2&quot; | /usr/bin/mail -a &quot;Content-type: text/html&quot; -s &quot;Pleroma mention - $(date)&quot; MyEmailAddress@gmail.com
+# looking for a way to safely include message in the body of the email. 
+# /bin/echo &quot;$1 $2&quot; | /usr/bin/mail -a &quot;Content-type: text/html&quot; -s &quot;Pleroma mention - $(date)&quot; MyEmailAddress@gmail.com
+#
+/bin/echo 'You have a new Pleroma mention' | /usr/bin/mail -a &quot;Content-type: text/html&quot; -s &quot;Pleroma mention - $(date)&quot; MyEmailAddress@gmail.com
 </code></pre>
 <ul class="pa0">
   
@@ -214,7 +211,7 @@ logger &quot;$0 $1 $2&quot;
 <div class="mt6">
         
       </div>
-    </section>
+    </main>
 
     <aside class="w-30-l mt6-l">
 
@@ -264,8 +261,6 @@ logger &quot;$0 $1 $2&quot;
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
 </svg>
 </span></a>
-
-
 
 
 </div>
