@@ -194,7 +194,7 @@
         <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
           This is my hack to get an email when my Pleroma account is mentioned. The hack is a PostgreSQL database trigger on the notifications table.
 You&rsquo;ll need a mail transfer agent configured on your server. I use Postfix.
-Create database function create or replace function function_notifications_email() returns trigger as $$ declare body text :='EMPTY'; begin select replace(c.data-&gt;&gt;'content','''','&quot;') from activities as b join objects as c on b.data-&gt;&gt;'object' = c.data-&gt;&gt;'id' where new.
+Create database function create or replace function function_notifications_email() returns trigger as $$ begin perform pg_notify('pleroma_notification_channel', c.data-&gt;&gt;'content') from activities as b join objects as c on b.data-&gt;&gt;'object' = c.data-&gt;&gt;'id' where new.activity_id = b.
         </div>
           <a href="/posts/20190505/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
         

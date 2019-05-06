@@ -59,7 +59,7 @@
 
 <meta itemprop="datePublished" content="2019-05-05T05:00:00-04:00" />
 <meta itemprop="dateModified" content="2019-05-05T05:00:00-04:00" />
-<meta itemprop="wordCount" content="180">
+<meta itemprop="wordCount" content="192">
 
   <meta itemprop="image" content="https://lh3.googleusercontent.com/bjKwWZXta_2VzfAdsoYgnrI7fKmDeqOru5Ek3DkOAN0aTTizOY98FuaqNWHeVHeCZm0aTBqUKyMI-IMsn7Ik7Nq57ySwZhX5UJtYEZyvm-oxtLZo7FxT-SyRxUcxPrsRdfGIKTrTlzA=w2400">
 
@@ -187,23 +187,45 @@
 
 <h2 id="create-database-function">Create database function</h2>
 
-<p><code>create or replace function function_notifications_email() returns trigger as $$ declare body text :='EMPTY'; begin select replace(c.data-&gt;&gt;'content','''','&quot;') from activities as b join objects as c on b.data-&gt;&gt;'object' = c.data-&gt;&gt;'id' where new.activity_id = b.id and b.data-&gt;&gt;'type' = 'Create' into body; execute format('copy (select 1) to program ''/home/pleroma/email.sh &quot;%s&quot;'' ', body); return null; end; $$ language 'plpgsql' EXTERNAL SECURITY DEFINER;</code></p>
+<p><code>create or replace function function_notifications_email() returns trigger as $$ begin perform pg_notify('pleroma_notification_channel', c.data-&gt;&gt;'content') from activities as b join objects as c on b.data-&gt;&gt;'object' = c.data-&gt;&gt;'id' where new.activity_id = b.id and b.data-&gt;&gt;'type' = 'Create'; return null; end; $$ language 'plpgsql';</code></p>
 
 <h2 id="create-database-trigger">Create database trigger</h2>
 
 <p><code>create trigger trigger_notifications_email after insert on notifications for each row execute procedure function_notifications_email();</code></p>
 
-<h2 id="bash-script">Bash script</h2>
+<h2 id="python-script">Python script</h2>
 
-<pre><code>#!/bin/bash
-#
-# Send email from pleroma PostgreSQL function function_notifications_email().
-#
-logger &quot;$0 $1 $2&quot;
-# looking for a way to safely include message in the body of the email. 
-# /bin/echo &quot;$1 $2&quot; | /usr/bin/mail -a &quot;Content-type: text/html&quot; -s &quot;Pleroma mention - $(date)&quot; MyEmailAddress@gmail.com
-#
-/bin/echo 'You have a new Pleroma mention' | /usr/bin/mail -a &quot;Content-type: text/html&quot; -s &quot;Pleroma mention - $(date)&quot; MyEmailAddress@gmail.com
+<pre><code>#!/usr/bin/python
+import psycopg2, select, datetime, smtplib, sys
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEText import MIMEText
+
+seconds_passed = 0
+conn = psycopg2.connect(database=&quot;pleroma_dev&quot;, user=&quot;pleroma&quot;)
+curs = conn.cursor();
+curs.execute(&quot;LISTEN pleroma_notification_channel;&quot;)
+print &quot;Waiting on notification&quot;
+while 1:
+    conn.commit()
+    if select.select([conn],[],[],5) == ([],[],[]):
+        seconds_passed += 5
+        print &quot;{} seconds passed without a notification...&quot;.format(seconds_passed)
+    else:
+        seconds_passed = 0
+        conn.poll()
+        conn.commit()
+        while conn.notifies:
+            notify = conn.notifies.pop()
+            print &quot;Got NOTIFY:&quot;, datetime.datetime.now(), notify.pid, notify.channel, notify.payload
+            s = smtplib.SMTP('localhost')
+            msg = MIMEText(notify.payload,'html','utf-8')
+            msg['From'] = 'myemailaddress@myserver.com'
+            msg['To'] = 'myemailaddress@myserver.com'
+            msg['Subject'] = datetime.datetime.now().strftime(&quot;Pleroma mention - %B %d, %Y %H:%M:%S %p&quot;)
+            s.sendmail('myemailaddress@myserver.com',['myemailaddress@myserver.com'],msg.as_string())
+            print &quot;Sent email&quot;, msg.as_string()
+            s.quit()
+
 </code></pre>
 <ul class="pa0">
   
