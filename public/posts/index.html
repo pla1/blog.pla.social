@@ -160,7 +160,7 @@
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       This is my hack to get an email when my Pleroma account is mentioned. The hack is a PostgreSQL database trigger on the notifications table. The trigger uses pg_notify to send the content of the message to a python script which is listening to the PostgreSQL channel named pleroma_notification_channel.
 You&rsquo;ll need a mail transfer agent configured on your server. I use Postfix.
-Create database function create or replace function function_notifications_email() returns trigger as $$ begin perform pg_notify('pleroma_notification_channel', c.
+Create database function create or replace function function_notifications_email() returns trigger as $$ begin perform pg_notify('pleroma_notification_channel', '&lt;b&gt;From:&lt;/b&gt; ' || (c.
     </div>
   </div>
 </div>
@@ -189,7 +189,7 @@ From the PostgreSQL documentation: A trigram is a group of three consecutive cha
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://blog.pla.social/" >
-    &copy; 2019 PLA Fedilog
+    &copy; 2020 PLA Fedilog
   </a>
     <div>
 

@@ -59,7 +59,7 @@
 
 <meta itemprop="datePublished" content="2019-05-05T05:00:00-04:00" />
 <meta itemprop="dateModified" content="2019-05-05T05:00:00-04:00" />
-<meta itemprop="wordCount" content="238">
+<meta itemprop="wordCount" content="251">
 
   <meta itemprop="image" content="https://lh3.googleusercontent.com/bjKwWZXta_2VzfAdsoYgnrI7fKmDeqOru5Ek3DkOAN0aTTizOY98FuaqNWHeVHeCZm0aTBqUKyMI-IMsn7Ik7Nq57ySwZhX5UJtYEZyvm-oxtLZo7FxT-SyRxUcxPrsRdfGIKTrTlzA=w2400">
 
@@ -188,16 +188,16 @@
 <h2 id="create-database-function">Create database function</h2>
 
 <pre><code>create or replace function
-  function_notifications_email() returns trigger as $$
-  begin
-    perform pg_notify('pleroma_notification_channel', c.data-&gt;&gt;'content')
-      from activities as b join objects as c
-      on b.data-&gt;&gt;'object' = c.data-&gt;&gt;'id'
-      where new.activity_id = b.id
-      and b.data-&gt;&gt;'type' = 'Create'
-      and c.data-&gt;&gt;'type' = 'Note';
-    return null;
-  end; $$ language 'plpgsql';
+    function_notifications_email() returns trigger as $$
+        begin
+            perform pg_notify('pleroma_notification_channel', '&lt;b&gt;From:&lt;/b&gt; ' || (c.data-&gt;&gt;'actor'::text) || '&lt;br&gt;&lt;b&gt;To:&lt;/b&gt; ' || (c.data-&gt;'to'-&gt;&gt;0) || '&lt;br&gt;&lt;b&gt;Content:&lt;/b&gt; ' ||  (c.data-&gt;&gt;'content'::text))
+                from activities as b
+                join objects as c on b.data-&gt;&gt;'object' = c.data-&gt;&gt;'id'
+                where new.activity_id = b.id
+                and b.data-&gt;&gt;'type' = 'Create'
+                and c.data-&gt;&gt;'type' = 'Note';
+            return null;
+        end; $$ language 'plpgsql';
 </code></pre>
 
 <h2 id="create-database-trigger">Create database trigger</h2>
@@ -281,7 +281,7 @@ WantedBy=multi-user.target
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://blog.pla.social/" >
-    &copy; 2019 PLA Fedilog
+    &copy; 2020 PLA Fedilog
   </a>
     <div>
 
