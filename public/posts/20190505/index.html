@@ -190,7 +190,7 @@
 <pre><code>create or replace function
     function_notifications_email() returns trigger as $$
         begin
-            perform pg_notify('pleroma_notification_channel', '&lt;b&gt;From:&lt;/b&gt; ' || (c.data-&gt;&gt;'actor'::text) || '&lt;br&gt;&lt;b&gt;To:&lt;/b&gt; ' || (c.data-&gt;'to'-&gt;&gt;0) || '&lt;br&gt;&lt;b&gt;Content:&lt;/b&gt; ' ||  (c.data-&gt;&gt;'content'::text))
+            perform pg_notify('pleroma_notification_channel', '&lt;b&gt;From&lt;/b&gt; ' || (c.data-&gt;&gt;'actor'::text) || '&lt;br&gt;&lt;b&gt;To&lt;/b&gt; ' || (c.data-&gt;'to'-&gt;&gt;0) || '&lt;br&gt;&lt;b&gt;Content&lt;/b&gt; ' ||  (c.data-&gt;&gt;'content'::text))
                 from activities as b
                 join objects as c on b.data-&gt;&gt;'object' = c.data-&gt;&gt;'id'
                 where new.activity_id = b.id

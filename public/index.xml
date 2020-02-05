@@ -19,7 +19,7 @@
       <guid>https://blog.pla.social/posts/20190505/</guid>
       <description>This is my hack to get an email when my Pleroma account is mentioned. The hack is a PostgreSQL database trigger on the notifications table. The trigger uses pg_notify to send the content of the message to a python script which is listening to the PostgreSQL channel named pleroma_notification_channel.
 You&amp;rsquo;ll need a mail transfer agent configured on your server. I use Postfix.
-Create database function create or replace function function_notifications_email() returns trigger as $$ begin perform pg_notify(&#39;pleroma_notification_channel&#39;, &#39;&amp;lt;b&amp;gt;From:&amp;lt;/b&amp;gt; &#39; || (c.</description>
+Create database function create or replace function function_notifications_email() returns trigger as $$ begin perform pg_notify(&#39;pleroma_notification_channel&#39;, &#39;&amp;lt;b&amp;gt;From&amp;lt;/b&amp;gt; &#39; || (c.</description>
     </item>
     
     <item>
